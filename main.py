@@ -41,11 +41,11 @@ def json_preparing():
 
 def current_time():
     'Возвращает время и дату в нужном формате'
-    __date_time = str(datetime.now())
-    __date, __time = __date_time.split(' ')
-    __time = __time[:8]
-    __formated = __date + 'T' + __time
-    return __formated
+    date_time = str(datetime.now())
+    date, time = date_time.split(' ')
+    time = time[:8]
+    formated = date + 'T' + time
+    return formated
 
 
 def main(slug, page):
