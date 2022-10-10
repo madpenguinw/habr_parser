@@ -128,7 +128,7 @@ def main(slug, page):
             except IndexError:
                 time_published = time_published.split(
                     '"timePublished":"', maxsplit=1)[0]
-            # Trimmed +00:00 by time_published
+            # Removed +00:00 from the time_published
             # so the format matches actual_data
             time_published = time_published.split('+', maxsplit=1)[0]
             article_dict['time_published'] = time_published
