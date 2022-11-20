@@ -81,17 +81,17 @@ def make_slug(slug):
     return slug
 
 
-def get_all_arcticles_ids(slug, cerain_page=None):
+def get_all_arcticles_ids(slug, certain_page=None):
     """
     Возвращает список, содержащий списки с id всех статей со всех страниц,
     найденных по ключевым словам на Habr.com, или с одной конкретной страницы,
-    при заданном параметре cerain_page
+    при заданном параметре certain_page
     """
     all_ids_list = []
     # There might be max 50 pages with results on Habr.com
     for page in range(1, 51):
-        if cerain_page:
-            page = cerain_page
+        if certain_page:
+            page = certain_page
         url = \
             f'https://habr.com/ru/search/page{page}/?q=' \
             f'{quote(slug)}&target_type=posts&order=relevance'
@@ -113,7 +113,7 @@ def get_all_arcticles_ids(slug, cerain_page=None):
         articles_ids = articles_ids.split('"]}', maxsplit=1)[0]
         list_articles_ids = articles_ids.split('","')
         all_ids_list.append(list_articles_ids)
-        if cerain_page:
+        if certain_page:
             break
     return all_ids_list
 
