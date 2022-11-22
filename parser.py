@@ -1,4 +1,3 @@
-import json
 import logging
 from datetime import datetime
 from urllib.error import HTTPError
@@ -6,6 +5,8 @@ from urllib.parse import quote
 from urllib.request import urlopen
 
 from bs4 import BeautifulSoup
+
+from writer import Writer
 
 FORMAT = '%(asctime)s - %(name)s - %(funcName)s - %(levelname)s - %(message)s'
 DATEFMT = '%Y-%m-%dT%H:%M:%S'
@@ -36,17 +37,18 @@ class Parser():
     def json_preparing():
         """Prepares empty dictionaries"""
         author_dict = {
-            'id': False,
+            'author_id': False,
             'nickname': False,
             'name': False,
             'speciality': False,
-            'link': False,
+            'author_link': False,
         }
         article = {
+            'article_id': False,
             'time_published': False,
             'title': False,
             'author': {},
-            'link': False,
+            'article_link': False,
         }
         data = {}
         json_response = {
@@ -85,6 +87,20 @@ class Parser():
         return slug
 
     @staticmethod
+    def get_beautifulsoup_object(url):
+        """Returns beautifulsoup object for further parsing"""
+        try:
+            html = urlopen(url).read()
+        except HTTPError:
+            logger.error(
+                'Не получается открыть страницу "%(url)s"',
+                {'url': url}
+            )
+            return False
+        bs = BeautifulSoup(html, 'html.parser', from_encoding="utf-8")
+        return bs
+
+    @staticmethod
     def get_all_arcticles_ids(slug, certain_page=None):
         """
         Returns a list containing lists with id of all articles from all pages,
@@ -100,11 +116,9 @@ class Parser():
             url = \
                 f'https://habr.com/ru/search/page{page}/?q=' \
                 f'{quote(slug)}&target_type=posts&order=relevance'
-            try:
-                html = urlopen(url).read()
-            except HTTPError:
+            bs = Parser.get_beautifulsoup_object(url)
+            if not bs:
                 return all_ids_list
-            bs = BeautifulSoup(html, 'html.parser', from_encoding="utf-8")
             content = bs.find_all('script')[4]
             if str(content).startswith('<script async=""'):
                 content = bs.find_all('script')[5]
@@ -144,10 +158,10 @@ class Parser():
             author_name = author_name.split(',"', maxsplit=1)[0]
             if '"' in author_name:
                 author_name = author_name.replace('"', '')
-            author_dict['id'] = author_id
+            author_dict['author_id'] = author_id
             author_dict['nickname'] = author_nickname
             author_dict['name'] = author_name
-            author_dict['link'] = \
+            author_dict['author_link'] = \
                 f'https://habr.com/ru/users/{author_nickname}/posts/'
             if '"speciality":"' in author_info:
                 author_speciality = author_info
@@ -164,14 +178,16 @@ class Parser():
     @staticmethod
     def get_one_arcticle_info(article_id):
         """Returns a dictionary with full information about the article"""
-        article_url = f'https://habr.com/ru/post/{article_id}/'
-        html = urlopen(article_url).read()
-        bs = BeautifulSoup(html, 'html.parser', from_encoding="utf-8")
-        bs_str = str(bs)
+        article_url = Parser.make_habr_url(article_id)
+        bs = Parser.get_beautifulsoup_object(article_url)
         article_dict = Parser.json_preparing()[1]
+        if not bs:
+            return article_dict
+        article_dict['article_id'] = article_id
         title = bs.find('title').text
         article_dict['title'] = title
-        article_dict['link'] = article_url
+        article_dict['article_link'] = article_url
+        bs_str = str(bs)
         try:
             time_published = bs_str.split(
                 '"timePublished":"', maxsplit=1)[1]
@@ -185,6 +201,48 @@ class Parser():
         author_dict = Parser.get_author_dict(bs_str)
         article_dict['author'] = author_dict
         return article_dict
+
+    @staticmethod
+    def check_is_habr_url(url):
+        """Check if the requested string is Habr's url"""
+        if url and type(url) == str:
+            if url.startswith('https://habr.com/ru/'):
+                print('yes')
+                return True
+        else:
+            logger.error('Url "%(url)s" is incorrect', {'url': url})
+            return False
+
+    @staticmethod
+    def make_habr_url(article_id):
+        return f'https://habr.com/ru/post/{article_id}/'
+
+    @staticmethod
+    def get_text_from_aricle(article_url):
+        bs = Parser.get_beautifulsoup_object(article_url)
+        if not bs:
+            return False
+        bs_str = str(bs)
+        try:
+            text = bs_str.split('<p>', maxsplit=1)[1]
+        except IndexError:
+            try:
+                text = bs_str.split(
+                    '<div xmlns="http://www.w3.org/1999/xhtml">', maxsplit=1
+                )[1]
+            except IndexError as error:
+                error = str(error)
+                logger.error(error)
+                return False
+        try:
+            text = text.split('Теги', maxsplit=1)[0]
+        except IndexError as error:
+            error = str(error)
+            logger.error(error)
+            return False
+        text_bs = BeautifulSoup(text, 'html.parser', from_encoding="utf-8")
+        clean_text = text_bs.get_text()
+        return clean_text
 
     @staticmethod
     def main_parser(slug, certain_page):
@@ -202,7 +260,10 @@ class Parser():
             i = 1
             for list_articles_ids in all_arcticles_ids:
                 for article_id in list_articles_ids:
-                    logger.info('Processing article number  %(i)s, id = %(article_id)s', {'i': i, 'article_id': article_id})
+                    logger.info(
+                        'Processing article number  %(i)s, id = '
+                        '%(article_id)s', {'i': i, 'article_id': article_id}
+                    )
                     article_dict = Parser.get_one_arcticle_info(article_id)
                     # data{} contains data about all articles
                     data[i] = article_dict
@@ -229,15 +290,7 @@ class Parser():
             return json_response
 
     @staticmethod
-    def write_json_in_file(dictionary):
-        """Writes a dictionary to the data.json file"""
-        json_dumps = json.dumps(dictionary, indent=4, ensure_ascii=False,)
-        with open('data.json', 'a', encoding='utf-8') as outfile:
-            outfile.write(json_dumps)
-            outfile.write('\n')
-
-    @staticmethod
     def parsing_and_saving_results(slug, certain_page):
         """Running the parser and saving the result to a file"""
         response = Parser.main_parser(slug, certain_page)
-        Parser.write_json_in_file(response)
+        Writer.write_dictionary_in_file(response)
