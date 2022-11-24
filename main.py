@@ -1,28 +1,19 @@
 import logging
 
-from parser import Parser
-from writer import Writer
-
-FORMAT = '%(asctime)s - %(name)s - %(funcName)s - %(levelname)s - %(message)s'
-DATEFMT = '%Y-%m-%dT%H:%M:%S'
-
-logging.basicConfig(
-    format=FORMAT,
-    datefmt=DATEFMT,
-    level=logging.INFO,
-)
-
-formatter = logging.Formatter(
-    FORMAT,
-    datefmt=DATEFMT
-)
-
+import app_logger
+from tasks.analyzer import CloudMaker
+from tasks.cleaner import TextCleaner
+from tasks.parser import Parser
+from tasks.writer import Writer
 
 logger = logging.getLogger(__name__)
 
 
 def main():
-    """Receives and processes a request to parse the Habr.com website"""
+    """
+    Receives and processes a request to
+    parse the Habr.com website and other tasks
+    """
     task = int()
     while task != 4:
         try:
@@ -36,7 +27,7 @@ def main():
                 '4 - Выход из программы \n'
             ))
         except TypeError:
-            print('Ошибка: число необходимо необходимо вводить цифрами \n')
+            logger.error('A digit must be entered \n')
         if task not in range(1, 5):
             while task not in range(1, 5):
                 try:
@@ -44,7 +35,7 @@ def main():
                         'Вы ввели недопустимое значение. '
                         'Ведите цифру: 1, 2, 3 или 4 \n'))
                 except ValueError:
-                    print('Ошибка: необходимо ввести цифру \n')
+                    logger.error('A digit must be entered \n')
         if task == 1:
             slug = input(
                 'Введите ключевое слово или слова для поиска на '
@@ -58,8 +49,7 @@ def main():
                         'Или введите 0, чтобы получить информацию '
                         'со всех страниц \n'))
                 except ValueError:
-                    print('Ошибка: число необходимо необходимо вводить '
-                          'цифрами')
+                    logger.error('Number must be entered in digits')
             Parser.parsing_and_saving_results(slug, certain_page)
         elif task == 2:
             condition = False
@@ -74,12 +64,14 @@ def main():
                     if checking_url:
                         condition = True
                     else:
-                        print('Ошибка. Введите корректное значение')
+                        logger.error('Please enter a valid value')
             text = Parser.get_text_from_aricle(url)
             Writer.write_txt_in_file(text)
 
         elif task == 3:
-            pass
+            text = TextCleaner.main()
+            if text:
+                CloudMaker.create_cloud(text)
 
         elif task == 4:
             print('Выполняется выход из программы... \n'

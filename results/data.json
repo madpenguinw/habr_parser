@@ -1,0 +1,271 @@
+{
+    "actual_data": "2022-11-24T18:27:23",
+    "current_processing_duration": 15.668798,
+    "error_message": false,
+    "is_error": false,
+    "origin_request": "nft",
+    "response_status": "COMPLETE",
+    "status_code": 200,
+    "data": {
+        "1": {
+            "article_id": "653085",
+            "time_published": "2022-02-24T09:00:05",
+            "title": "Отдаю NFT за 880 миллионов долларов / Хабр",
+            "author": {
+                "author_id": "410650",
+                "nickname": "man_of_letters",
+                "name": "null",
+                "speciality": "Человек смыслов",
+                "author_link": "https://habr.com/ru/users/man_of_letters/posts/"
+            },
+            "article_link": "https://habr.com/ru/post/653085/"
+        },
+        "2": {
+            "article_id": "654537",
+            "time_published": "2022-03-07T09:00:01",
+            "title": "Про NFT и деньги / Хабр",
+            "author": {
+                "author_id": "410650",
+                "nickname": "man_of_letters",
+                "name": "null",
+                "speciality": "Человек смыслов",
+                "author_link": "https://habr.com/ru/users/man_of_letters/posts/"
+            },
+            "article_link": "https://habr.com/ru/post/654537/"
+        },
+        "3": {
+            "article_id": "653665",
+            "time_published": "2022-02-28T13:00:02",
+            "title": "NFT, NFT, NFT — медиавирус / Хабр",
+            "author": {
+                "author_id": "410650",
+                "nickname": "man_of_letters",
+                "name": "null",
+                "speciality": "Человек смыслов",
+                "author_link": "https://habr.com/ru/users/man_of_letters/posts/"
+            },
+            "article_link": "https://habr.com/ru/post/653665/"
+        },
+        "4": {
+            "article_id": "682510",
+            "time_published": "2022-08-15T07:47:32",
+            "title": "Почему NFT умер, а крипта — нет / Хабр",
+            "author": {
+                "author_id": "141872",
+                "nickname": "ushim",
+                "name": "Егор",
+                "speciality": "Разработчик, тестировщик, обзорщик",
+                "author_link": "https://habr.com/ru/users/ushim/posts/"
+            },
+            "article_link": "https://habr.com/ru/post/682510/"
+        },
+        "5": {
+            "article_id": "684008",
+            "time_published": "2022-08-22T14:52:26",
+            "title": "Из Warcraft в реальную жизнь или что такое Soulbound NFT / Хабр",
+            "author": {
+                "author_id": "3115215",
+                "nickname": "IvanRomanovich",
+                "name": "null",
+                "speciality": false,
+                "author_link": "https://habr.com/ru/users/IvanRomanovich/posts/"
+            },
+            "article_link": "https://habr.com/ru/post/684008/"
+        },
+        "6": {
+            "article_id": "545620",
+            "time_published": "2021-03-05T02:26:52",
+            "title": "Ответы на часто задаваемые вопросы о NFT / Хабр",
+            "author": {
+                "author_id": "2411459",
+                "nickname": "tw_community",
+                "name": "Timeweb Cloud",
+                "speciality": "Редактор блога Timeweb",
+                "author_link": "https://habr.com/ru/users/tw_community/posts/"
+            },
+            "article_link": "https://habr.com/ru/post/545620/"
+        },
+        "7": {
+            "article_id": "564676",
+            "time_published": "2021-06-25T10:58:49",
+            "title": "Что такое NFT на самом деле, сколько обмана может скрывать, и в каких сферах реально применим / Хабр",
+            "author": {
+                "author_id": "1784505",
+                "nickname": "cryptolawyer",
+                "name": "null",
+                "speciality": "IT-lawyer",
+                "author_link": "https://habr.com/ru/users/cryptolawyer/posts/"
+            },
+            "article_link": "https://habr.com/ru/post/564676/"
+        },
+        "8": {
+            "article_id": "579908",
+            "time_published": "2021-09-25T06:25:36",
+            "title": "Non-fungible token (NFT): основы / Хабр",
+            "author": {
+                "author_id": "2587085",
+                "nickname": "dedstriger",
+                "name": "Никита Прокуратов",
+                "speciality": false,
+                "author_link": "https://habr.com/ru/users/dedstriger/posts/"
+            },
+            "article_link": "https://habr.com/ru/post/579908/"
+        },
+        "9": {
+            "article_id": "646009",
+            "time_published": "2022-01-17T10:49:36",
+            "title": "Невзаимозаменяемые токены (NFT) — явление года. Что это такое и каков их юридический статус в России? / Хабр",
+            "author": {
+                "author_id": "2678839",
+                "nickname": "Art_Andrei13",
+                "name": "null",
+                "speciality": false,
+                "author_link": "https://habr.com/ru/users/Art_Andrei13/posts/"
+            },
+            "article_link": "https://habr.com/ru/post/646009/"
+        },
+        "10": {
+            "article_id": "647959",
+            "time_published": "2022-01-26T14:09:10",
+            "title": "Так это «пирамида» или нет? Что делать с NFT в 2022 году / Хабр",
+            "author": {
+                "author_id": "2871529",
+                "nickname": "S_Guzenko",
+                "name": "Сергей Гузенко",
+                "speciality": "CEO at WEZOM",
+                "author_link": "https://habr.com/ru/users/S_Guzenko/posts/"
+            },
+            "article_link": "https://habr.com/ru/post/647959/"
+        },
+        "11": {
+            "article_id": "651067",
+            "time_published": "2022-02-11T16:57:30",
+            "title": "В защиту NFT / Хабр",
+            "author": {
+                "author_id": "52751",
+                "nickname": "phillennium",
+                "name": "Евгений Трифонов",
+                "speciality": "ContentProvider",
+                "author_link": "https://habr.com/ru/users/phillennium/posts/"
+            },
+            "article_link": "https://habr.com/ru/post/651067/"
+        },
+        "12": {
+            "article_id": "653657",
+            "time_published": "2022-02-27T15:31:18",
+            "title": "Юридические аспекты NFT: как создателям NFT защитить свои исключительные права на цифровые активы / Хабр",
+            "author": {
+                "author_id": "2786787",
+                "nickname": "alinafaizova25",
+                "name": "Алина Фаизова",
+                "speciality": "юрист Zenit Legal",
+                "author_link": "https://habr.com/ru/users/alinafaizova25/posts/"
+            },
+            "article_link": "https://habr.com/ru/post/653657/"
+        },
+        "13": {
+            "article_id": "664414",
+            "time_published": "2022-05-05T10:08:11",
+            "title": "В 12 я помог роботу POMPO получить награду на Behance. А он поможет мне сделать NFT и построить робота в реале / Хабр",
+            "author": {
+                "author_id": "2509133",
+                "nickname": "Lucker_Kophe",
+                "name": "Леонтий",
+                "speciality": "frontend-разработчик & веб-дизайнер",
+                "author_link": "https://habr.com/ru/users/Lucker_Kophe/posts/"
+            },
+            "article_link": "https://habr.com/ru/post/664414/"
+        },
+        "14": {
+            "article_id": "672376",
+            "time_published": "2022-06-20T10:40:04",
+            "title": "NFT-мошенники или как не попасть на ИКСуи / Хабр",
+            "author": {
+                "author_id": "3113719",
+                "nickname": "Aalexaa",
+                "name": "null",
+                "speciality": false,
+                "author_link": "https://habr.com/ru/users/Aalexaa/posts/"
+            },
+            "article_link": "https://habr.com/ru/post/672376/"
+        },
+        "15": {
+            "article_id": "578270",
+            "time_published": "2021-09-16T09:23:22",
+            "title": "NFT-токены: новая валюта для спортивных фанатов? / Хабр",
+            "author": {
+                "author_id": "2460033",
+                "nickname": "helloageeva",
+                "name": "null",
+                "speciality": "Пользователь",
+                "author_link": "https://habr.com/ru/users/helloageeva/posts/"
+            },
+            "article_link": "https://habr.com/ru/post/578270/"
+        },
+        "16": {
+            "article_id": "693048",
+            "time_published": "2022-10-13T09:55:16",
+            "title": "Цифровая трансформация на основе NFT / Хабр",
+            "author": {
+                "author_id": "2834741",
+                "nickname": "Lika_Chernigo",
+                "name": "Анжелика Черниго",
+                "speciality": "редактор Слёрма и Southbridge",
+                "author_link": "https://habr.com/ru/users/Lika_Chernigo/posts/"
+            },
+            "article_link": "https://habr.com/ru/post/693048/"
+        },
+        "17": {
+            "article_id": "553850",
+            "time_published": "2021-04-24T08:20:01",
+            "title": "NFT — это пирамида, и люди уже теряют на ней деньги / Хабр",
+            "author": {
+                "author_id": "2296163",
+                "nickname": "host_m",
+                "name": "Mikhail",
+                "speciality": "Хостинг серверов",
+                "author_link": "https://habr.com/ru/users/host_m/posts/"
+            },
+            "article_link": "https://habr.com/ru/post/553850/"
+        },
+        "18": {
+            "article_id": "673452",
+            "time_published": "2022-06-25T20:19:08",
+            "title": "Как я сделал коллекцию NFT на своей «machine», и быстро выложил на opensea.io / Хабр",
+            "author": {
+                "author_id": "408300",
+                "nickname": "GilgulA",
+                "name": "null",
+                "speciality": false,
+                "author_link": "https://habr.com/ru/users/GilgulA/posts/"
+            },
+            "article_link": "https://habr.com/ru/post/673452/"
+        },
+        "19": {
+            "article_id": "558916",
+            "time_published": "2021-05-24T10:39:12",
+            "title": "Котики в NFT: революция в цифровом мире или хайповая пирамида? / Хабр",
+            "author": {
+                "author_id": "1220775",
+                "nickname": "ru_vds",
+                "name": "null",
+                "speciality": "Пользователь",
+                "author_link": "https://habr.com/ru/users/ru_vds/posts/"
+            },
+            "article_link": "https://habr.com/ru/post/558916/"
+        },
+        "20": {
+            "article_id": "574960",
+            "time_published": "2021-08-27T10:12:07",
+            "title": "Тату салон в Киеве запускает NFT платформу для татуировок / Хабр",
+            "author": {
+                "author_id": "2777347",
+                "nickname": "artemlinov22",
+                "name": "Артем",
+                "speciality": false,
+                "author_link": "https://habr.com/ru/users/artemlinov22/posts/"
+            },
+            "article_link": "https://habr.com/ru/post/574960/"
+        }
+    }
+}
