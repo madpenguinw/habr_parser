@@ -74,7 +74,7 @@ def main():
                 CloudMaker.create_cloud(text)
 
         elif task == 4:
-            print('Выполняется выход из программы... \n'
+            print('Выполняется выход из программы ... \n'
                   'Хорошего дня!')
 
 
