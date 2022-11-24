@@ -1,21 +1,7 @@
 import json
 import logging
 
-
-FORMAT = '%(asctime)s - %(name)s - %(funcName)s - %(levelname)s - %(message)s'
-DATEFMT = '%Y-%m-%dT%H:%M:%S'
-
-logging.basicConfig(
-    format=FORMAT,
-    datefmt=DATEFMT,
-    level=logging.INFO,
-)
-
-formatter = logging.Formatter(
-    FORMAT,
-    datefmt=DATEFMT
-)
-
+import app_logger
 
 logger = logging.getLogger(__name__)
 
@@ -52,8 +38,3 @@ class Writer():
                 'значение - "%(text)s", типа "%(var_type)s"',
                 {'text': text, 'var_type': type(text)}
             )
-
-
-if __name__ == '__main__':
-    Writer.write_txt_in_file(1)
-        

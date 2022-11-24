@@ -6,22 +6,8 @@ from urllib.request import urlopen
 
 from bs4 import BeautifulSoup
 
-from writer import Writer
-
-FORMAT = '%(asctime)s - %(name)s - %(funcName)s - %(levelname)s - %(message)s'
-DATEFMT = '%Y-%m-%dT%H:%M:%S'
-
-logging.basicConfig(
-    format=FORMAT,
-    datefmt=DATEFMT,
-    level=logging.INFO,
-)
-
-formatter = logging.Formatter(
-    FORMAT,
-    datefmt=DATEFMT
-)
-
+import app_logger
+from tasks.writer import Writer
 
 logger = logging.getLogger(__name__)
 
@@ -207,7 +193,6 @@ class Parser():
         """Check if the requested string is Habr's url"""
         if url and type(url) == str:
             if url.startswith('https://habr.com/ru/'):
-                print('yes')
                 return True
         else:
             logger.error('Url "%(url)s" is incorrect', {'url': url})
