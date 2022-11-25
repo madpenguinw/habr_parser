@@ -2,10 +2,12 @@ import logging
 import os
 import string
 
+import pymorphy2
 from nltk import Text, download, word_tokenize  # TODO
 from nltk.corpus import stopwords
 
 import app_logger
+from tasks.stop_words_list import STOP_WORDS
 
 logger = logging.getLogger(__name__)
 
@@ -40,7 +42,7 @@ class TextCleaner():
         logger.info('Cleaning text ...')
         text = text.lower()
         text = TextCleaner.remove_chars_from_text(
-            text, string.punctuation + '«»—'
+            text, string.punctuation + '«»—“”'
         )
         text = TextCleaner.remove_chars_from_text(text, string.digits)
         return text
@@ -69,7 +71,7 @@ class TextCleaner():
         """Removing stop words from text"""
         download('stopwords')
         russian_stopwords = stopwords.words("russian")
-        russian_stopwords.extend(['это'])
+        russian_stopwords.extend(STOP_WORDS)
         quantity = len(russian_stopwords)
         text_tokens = \
             [token.strip() for token in text_tokens
@@ -80,13 +82,24 @@ class TextCleaner():
         return text_tokens
 
     @staticmethod
+    def text_lemmatization(text):
+        """Lemmatization of a list of words in Russian"""
+        morph = pymorphy2.MorphAnalyzer()
+        result = []
+        for word in text:
+            p = morph.parse(word)[0]
+            result.append(p.normal_form)
+        return result
+
+    @staticmethod
     def main():
         text = TextCleaner.get_text_from_file()
         if not text:
             return None
         text = TextCleaner.text_preprocessing(text)
         text = TextCleaner.text_tokenization(text)
-        clean_text = TextCleaner.remove_stop_words(text)
-        logger.info('The text is cleaned')
+        lemmatized_text = TextCleaner.text_lemmatization(text)
+        clean_text = TextCleaner.remove_stop_words(lemmatized_text)
+        logger.info('The text is cleaned and lemmatized')
         TextCleaner.write_clean_text(clean_text)
         return clean_text

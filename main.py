@@ -71,7 +71,8 @@ def main():
         elif task == 3:
             text = TextCleaner.main()
             if text:
-                CloudMaker.create_cloud(text)
+                top_ten = CloudMaker.most_common_words(text, 10)
+                CloudMaker.create_cloud(top_ten)
 
         elif task == 4:
             print('Выполняется выход из программы ... \n'

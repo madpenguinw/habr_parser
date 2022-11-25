@@ -12,7 +12,9 @@ git clone https://github.com/madpenguinw/habr_parser.git
 Secondly download <a href=https://www.anaconda.com/products/distribution>Anaconda</a> and run in its prompt:
 ```
 conda create --name venv --file .\requirements.txt
-conda install --name venv -c https://conda.anaconda.org/conda-forge wordcloud
+conda install --name venv -c https://conda.anaconda.org/conda-forge 
+wordcloud
+conda install --name venv -c conda-forge pymorphy2
 ```
 Finally run main.py file:
 ```
