@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 from nltk.probability import FreqDist
 
-import app_logger
+import logging_config.app_logger
 
 logger = logging.getLogger(__name__)
 

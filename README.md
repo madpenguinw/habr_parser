@@ -3,6 +3,7 @@
 - Saving information about artcles and their authors
 - Saving article text
 - Cleaning that text and creating a "tag cloud" from it
+- Generates a list of people mentioned in the text
 ---
 ### Installation
 Fistly run in terminal:

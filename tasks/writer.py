@@ -1,7 +1,7 @@
 import json
 import logging
 
-import app_logger
+import logging_config.app_logger as app_logger
 
 logger = logging.getLogger(__name__)
 

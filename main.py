@@ -1,6 +1,6 @@
 import logging
 
-import app_logger
+import logging_config.app_logger
 from tasks.analyzer import CloudMaker
 from tasks.cleaner import TextCleaner
 from tasks.parser import Parser

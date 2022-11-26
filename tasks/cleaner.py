@@ -3,10 +3,10 @@ import os
 import string
 
 import pymorphy2
-from nltk import Text, download, word_tokenize  # TODO
+from nltk import download, word_tokenize
 from nltk.corpus import stopwords
 
-import app_logger
+import logging_config.app_logger as app_logger
 from tasks.stop_words_list import STOP_WORDS
 
 logger = logging.getLogger(__name__)
