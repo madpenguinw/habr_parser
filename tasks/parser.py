@@ -230,8 +230,8 @@ class Parser():
         return clean_text
 
     @staticmethod
-    def main_parser(slug, certain_page):
-        """The main function for parsing"""
+    def main(slug, certain_page):
+        """Run parser"""
         start_time = datetime.now()
         logger.info('Began processing request "%(slug)s"', {'slug': slug})
         data, json_response = Parser.json_preparing()[2: 4]
@@ -273,9 +273,3 @@ class Parser():
             json_response['status_code'] = 404
             logger.info("Parser's job is done here")
             return json_response
-
-    @staticmethod
-    def parsing_and_saving_results(slug, certain_page):
-        """Running the parser and saving the result to a file"""
-        response = Parser.main_parser(slug, certain_page)
-        Writer.write_dictionary_in_file(response)

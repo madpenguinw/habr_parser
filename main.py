@@ -4,7 +4,7 @@ import logging_config.app_logger
 from tasks.analyzer import CloudMaker
 from tasks.cleaner import TextCleaner
 from tasks.parser import Parser
-from tasks.writer import Writer
+from tasks.file_manager import Writer, Reader, Directory
 
 logger = logging.getLogger(__name__)
 
@@ -15,27 +15,30 @@ def main():
     parse the Habr.com website and other tasks
     """
     task = int()
-    while task != 4:
+    while task != 5:
         try:
             task = int(input(
                 'Введите номер задания, которое вас интересует '
-                '(1, 2, 3 или 4) \n'
+                '(1, 2, 3, 4 или 5) \n'
+                'Все полученные результаты будут сохранены в папку results \n'
                 '1 - Поиск статей по ключевым словам на Habr.com \n'
-                '2 - Получение текста определенной статьи на Habr.com '
-                '(например, для дальнейшего построения облака тегов) \n'
-                '3 - Построение облака тегов \n'
-                '4 - Выход из программы \n'
+                '2 - Получение текста определенной статьи на Habr.com \n'
+                '3 - Построение облака тегов из текста статьи \n'
+                '4 - Формирование списка людей, упомянутых в тексте статьи \n'
+                '5 - Выход из программы \n'
             ))
-        except TypeError:
+            Directory.check_and_make_dir('results')
+        except ValueError:
             logger.error('A digit must be entered \n')
-        if task not in range(1, 5):
-            while task not in range(1, 5):
+        if task not in range(1, 6):
+            while task not in range(1, 6):
                 try:
                     task = int(input(
                         'Вы ввели недопустимое значение. '
-                        'Ведите цифру: 1, 2, 3 или 4 \n'))
+                        'Ведите цифру: 1, 2, 3, 4 или 5 \n'))
                 except ValueError:
                     logger.error('A digit must be entered \n')
+
         if task == 1:
             slug = input(
                 'Введите ключевое слово или слова для поиска на '
@@ -50,7 +53,10 @@ def main():
                         'со всех страниц \n'))
                 except ValueError:
                     logger.error('Number must be entered in digits')
-            Parser.parsing_and_saving_results(slug, certain_page)
+            parsing_results = Parser.main(slug, certain_page)
+            Writer.write_dictionary_in_file(
+                parsing_results, 'results/data.json')
+
         elif task == 2:
             condition = False
             while not condition:
@@ -66,15 +72,23 @@ def main():
                     else:
                         logger.error('Please enter a valid value')
             text = Parser.get_text_from_aricle(url)
-            Writer.write_txt_in_file(text)
+            Writer.write_txt_in_file(text, file='results/text.txt')
 
         elif task == 3:
-            text = TextCleaner.main()
+            text = TextCleaner.main('results/text.txt')
             if text:
+                Writer.write_txt_in_file(
+                    text, file='results/clean_text.txt')
                 top_ten = CloudMaker.most_common_words(text, 10)
-                CloudMaker.create_cloud(top_ten)
+                CloudMaker.create_cloud(top_ten, 'results/')
 
         elif task == 4:
+            text = Reader.read_file('results/text.txt')
+            if text:
+                names_list = CloudMaker.extract_names(text)
+                Writer.write_txt_in_file(names_list, file='results/persons.txt')
+
+        elif task == 5:
             print('Выполняется выход из программы ... \n'
                   'Хорошего дня!')
 
