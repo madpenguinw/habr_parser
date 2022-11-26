@@ -75,11 +75,12 @@ def main():
             Writer.write_txt_in_file(text, file='results/text.txt')
 
         elif task == 3:
-            text = TextCleaner.main('results/text.txt')
+            text = Reader.read_file('results/text.txt')
             if text:
+                clean_text = TextCleaner.main(text)
                 Writer.write_txt_in_file(
-                    text, file='results/clean_text.txt')
-                top_ten = CloudMaker.most_common_words(text, 10)
+                    clean_text, file='results/clean_text.txt')
+                top_ten = CloudMaker.most_common_words(clean_text, 10)
                 CloudMaker.create_cloud(top_ten, 'results/')
 
         elif task == 4:

@@ -7,7 +7,6 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
 import logging_config.app_logger as app_logger
-from tasks.writer import Writer
 
 logger = logging.getLogger(__name__)
 
