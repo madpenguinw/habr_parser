@@ -62,7 +62,7 @@ class Reader():
         else:
             logger.error(
                 'There is no file "%(file)s" in current directory',
-                {'file', file}
+                {'file': file}
             )
             return None
 

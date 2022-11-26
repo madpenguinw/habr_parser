@@ -3,8 +3,8 @@ import logging
 import logging_config.app_logger
 from tasks.analyzer import CloudMaker
 from tasks.cleaner import TextCleaner
+from tasks.file_manager import Directory, Reader, Writer
 from tasks.parser import Parser
-from tasks.file_manager import Writer, Reader, Directory
 
 logger = logging.getLogger(__name__)
 
@@ -87,7 +87,8 @@ def main():
             text = Reader.read_file('results/text.txt')
             if text:
                 names_list = CloudMaker.extract_names(text)
-                Writer.write_txt_in_file(names_list, file='results/persons.txt')
+                Writer.write_txt_in_file(
+                    names_list, file='results/persons.txt')
 
         elif task == 5:
             print('Выполняется выход из программы ... \n'

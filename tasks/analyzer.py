@@ -1,20 +1,11 @@
 import logging
 
 import matplotlib.pyplot as plt
+from natasha import (PER, Doc, MorphVocab, NamesExtractor, NewsEmbedding,
+                     NewsMorphTagger, NewsNERTagger, NewsSyntaxParser,
+                     Segmenter)
 from nltk.probability import FreqDist
 from wordcloud import WordCloud
-
-from natasha import (
-    Doc,
-    MorphVocab,
-    NewsEmbedding,
-    NewsMorphTagger,
-    NewsSyntaxParser,
-    NewsNERTagger,
-    NamesExtractor,
-    PER,
-    Segmenter,
-)
 
 import logging_config.app_logger
 

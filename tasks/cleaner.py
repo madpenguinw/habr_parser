@@ -1,5 +1,4 @@
 import logging
-import os
 import string
 
 import pymorphy2
@@ -8,7 +7,6 @@ from nltk.corpus import stopwords
 
 import logging_config.app_logger as app_logger
 from tasks.stop_words_list import STOP_WORDS
-from tasks.file_manager import Writer, Reader
 
 logger = logging.getLogger(__name__)
 
@@ -71,8 +69,7 @@ class TextCleaner():
         return result
 
     @staticmethod
-    def main(file):
-        text = Reader.read_file(file)
+    def main(text):
         if not text:
             return None
         text = TextCleaner.text_preprocessing(text)
