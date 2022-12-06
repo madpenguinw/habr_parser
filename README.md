@@ -21,7 +21,7 @@ When your venv is activated:
 pip install natasha
 ```
 Note, you can always run commands with *pip* only if are **not** using Windows
-On Windows it is necessary to download all packages, except *natasha*, with *conda*
+<br>On Windows it is necessary to download all packages, except *natasha*, with *conda*
 ```
 Finally run main.py file:
 ```
