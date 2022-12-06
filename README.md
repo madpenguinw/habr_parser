@@ -6,11 +6,11 @@
 - Generates a list of people mentioned in the text
 ---
 ### Installation
-Fistly run in terminal:
+Fistly, run in terminal:
 ```
 git clone https://github.com/madpenguinw/habr_parser.git
 ```
-Secondly download <a href=https://www.anaconda.com/products/distribution>Anaconda</a> and run in its prompt:
+Secondly, download <a href=https://www.anaconda.com/products/distribution>Anaconda</a> and run in its prompt:
 ```
 conda create --name venv --file .\requirements.txt
 conda install --name venv -c https://conda.anaconda.org/conda-forge wordcloud
@@ -22,8 +22,8 @@ pip install natasha
 ```
 Note, you can always run commands with *pip* only if are **not** using Windows
 <br>On Windows it is necessary to download all packages, except *natasha*, with *conda*
-```
-Finally run main.py file:
+
+Finally, run main.py file:
 ```
 python 'your_path_to_main.py'
 ```
