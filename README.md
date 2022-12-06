@@ -15,7 +15,6 @@ Secondly download <a href=https://www.anaconda.com/products/distribution>Anacond
 conda create --name venv --file .\requirements.txt
 conda install --name venv -c https://conda.anaconda.org/conda-forge wordcloud
 conda install --name venv -c conda-forge pymorphy2
-conda install --name venv -c conda-forge natasha
 ```
 When your venv is activated:
 ```
