@@ -1,8 +1,8 @@
 # Habr parser
-- Terminal app for parsing habr.com
+- Terminal app for parsing Habr.com
 - Saving information about artcles and their authors
 - Saving article text
-- Cleaning that text and creating a "tag cloud" from it
+- Cleaning that text and creating a *"tag cloud"* from it
 - Generates a list of people mentioned in the text
 ---
 ### Installation
@@ -20,6 +20,9 @@ When your venv is activated:
 ```
 pip install natasha
 ```
+Note, you can always run commands with *pip* only if are **not** using Windows
+On Windows it is necessary to download all packages, except *natasha*, with *conda*
+```
 Finally run main.py file:
 ```
 python 'your_path_to_main.py'
@@ -33,9 +36,9 @@ python 'your_path_to_main.py'
 - check the results in *data.json* that will appear in your directory 
 #### Second task
 - input link to arcticle on Habr.com or its id
-- this article will be downloaded to text.txt file in root directory
+- this article will be downloaded to *text.txt* file in root directory
 #### Third task
-- there will be created a "tag cloud" as a tag_cloud.png from text in text.txt
+- there will be created a *"tag cloud"* as a *tag_cloud.png* from text in *text.txt*
 #### Fourth task
 - generates a list of people mentioned in the text
 #### Fifth task
