@@ -1,6 +1,6 @@
 # Habr parser
 - Terminal app for parsing Habr.com
-- Saving information about artcles and their authors
+- Saving information about articles and their authors
 - Saving article text
 - Cleaning that text and creating a *"tag cloud"* from it
 - Generates a list of people mentioned in the text
